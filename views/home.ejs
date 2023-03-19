@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!----------- Fonts ----------->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!----------- Scripts ----------->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ephesis&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <title>SMKN 4 Palangkaraya</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!----------- Header ----------->
+    <header
+      class="bg-white shadow fixed top-0 z-[1] font-[Inter] w-screen md:flex md:justify-between py-3"
+    >
+      <div class="flex justify-between items-center">
+        <a href="#" class="ml-4 text-xl text-sky-600">SMKN 4 Palangkaraya</a>
+        <span class="text-3xl mr-6 cursor-pointer md:hidden">
+          <ion-icon
+            name="menu-outline"
+            class="pt-3"
+            onclick="menu(this)"
+          ></ion-icon>
+        </span>
+      </div>
+      <ul
+        class="absolute pl-7 pb-7 w-full bg-white transition-all opacity-0 eas-in duration-500 md:opacity-100 md:py-0 md:pl-0 md:w-auto md:static md:z-auto md:flex md:items-center"
+      >
+        <li class="mx-4 my-5 md:my-0 text-sm text-slate-500 hover:text-sky-500">
+          <a href="#">DATA</a>
+        </li>
+        <li class="mx-4 my-5 md:my-0 text-sm text-slate-500 hover:text-sky-500">
+          <a href="#">DOWNLOAD</a>
+        </li>
+        <li class="mx-4 my-5 md:my-0 text-sm text-slate-500 hover:text-sky-500">
+          <a href="#">DAFTAR</a>
+        </li>
+        <li class="mx-4 my-5 md:my-0 text-sm text-slate-500 hover:text-sky-500">
+          <a href="#">GALLERY</a>
+        </li>
+
+        <div class="md:ml-[250px] md:flex md:pr-7">
+          <a
+            href="#"
+            class="bg-sky-400 px-4 py-2 mx-3 rounded text-white hover:bg-sky-500"
+            >Register</a
+          >
+          <a
+            href="#"
+            class="bg-sky-400 px-4 py-2 mx-3 rounded text-white hover:bg-sky-500"
+            >Login</a
+          >
+        </div>
+      </ul>
+    </header>
+    <!----------- Jumbotron ----------->
+    <section class="container">
+      <div
+        class="h-[72vh] w-screen text-center self-center bg-smkn4 md:pt-10 md:px-5 md:flex md:bg-school md:h-[100vh]"
+      >
+        <div class="pt-12 md:pt-10 md:w-1/2">
+          <h1 class="pt-5 mt-10 text-2xl text-white font-semibold md:text-4xl">
+            <span class="text-sky-300">SMKN 4 asdasd </span
+            ><span class="text-yellow-400">
+              Unggul Berkarakter dan Terpercaya</span
+            >
+          </h1>
+          <p class="text-base text-white font-semibold my-6">
+            Visi: Menjadi Sekolah tinggi yang unggul, Berkarakter Terpercaya di
+            Palangakraya pada tahun 2030
+          </p>
+          <p class="text-white text-sm font-semibold text mb-8">
+            JL. Letkol Seth Adjie Km 3, Kodepos, 73111, Telpon: 0536 3227290,
+            Nomor Faks, - ; Email: smkempat.palangkaraya@yahoo.com.
+          </p>
+          <a
+            href="#"
+            class="p-2 py-2 mb-14 text-white font-semibold rounded-md inline-block bg-sky-500"
+            >Sistem Informasi</a
+          >
+        </div>
+        <div class="md:w-1/2 flex justify-center items-start">
+          <img
+            class="hidden md:block md:ring-2 sm:shadow md:mt-14 md:w-[500px] rounded-lg brightness-90 md:mr-5"
+            src="https://lh3.googleusercontent.com/p/AF1QipPOmwtOGSlJKckT6BQ7zWFiTM77NU18FQ64eU6y=s680-w680-h510"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+
+    <!----------- Main Content ----------->
+    <div class="container mt-10 font-[Poppins]">
+      <div class="mb-10 w-screen">
+        <div class="flex justify-center items-center flex-wrap">
+          <div class="w-full flex flex-col items-center text-center md:w-1/5">
+            <div
+              class="bg-yellow-400 w-[130px] h-[130px] rounded-full flex items-center justify-center"
+            >
+              <img
+                src="./img/graduation-cap.png"
+                class="w-[100px] h-[100px] pt-2"
+                alt=""
+              />
+            </div>
+            <p class="font-semibold text-lg text-sky-800 mt-8">
+              4 Fakultas S1 dan 1 Program Pasca Sarjana
+            </p>
+            <p class="font-normal text-sm text-slate-500 pt-2">
+              Lorem ipsum dolor sit amet constrectur solo mid main kunkka
+            </p>
+          </div>
+
+          <div
+            class="w-full flex flex-col items-center text-center py-32 md:mx-20 md:w-1/5"
+          >
+            <div
+              class="bg-yellow-400 w-[130px] h-[130px] rounded-full flex items-center justify-center"
+            >
+              <img
+                src="./img/building.png"
+                class="w-[90px] h-[90px] pb-4"
+                alt=""
+              />
+            </div>
+            <p class="font-semibold text-lg text-sky-800 mt-8">
+              19 Program Studi S1 dan 4 Program Studi S2
+            </p>
+            <p class="font-normal text-sm text-slate-500 pt-2">
+              Lorem ipsum dolor sit amet constrectur solo mid main kunkka
+            </p>
+          </div>
+
+          <div class="w-full flex flex-col items-center text-center md:w-1/5">
+            <div
+              class="bg-yellow-400 w-[130px] h-[130px] rounded-full flex items-center justify-center"
+            >
+              <span class="text-6xl">
+                <ion-icon name="people-outline"></ion-icon>
+              </span>
+            </div>
+            <p class="font-semibold text-lg text-sky-800 mt-8">
+              146 Dosen Tetap, Baik PNS Maupun Non PNS
+            </p>
+            <p class="font-normal text-sm text-slate-500 pt-2">
+              Lorem ipsum dolor sit amet constrectur solo mid main kunkka
+            </p>
+          </div>
+        </div>
+      </div>
+      <!------- FISI DAN MISI -------->
+      <div class="container mb-32 md:pl-32 md:pr-16">
+        <div class="w-full flex text-white bg-[#009FD1] flex-wrap">
+          <div class="w-full md:w-1/2">
+            <p class="font-semibold bg-[#D2BD00] text-center py-2">
+              Visi SMKN 4 Palangkaraya
+            </p>
+            <p class="font-thin text-sm py-3 px-16 leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+              ultrices auctor neque non pellentesque. Praesent quis luctus
+              libero. Sed at venenatis ipsum, eu bibendum arcu. In in lectus vel
+              lacus.
+            </p>
+          </div>
+          <div class="w-full md:w-1/2">
+            <p class="font-semibold bg-[#D2BD00] text-center py-2">
+              Misi SMKN 4 Palangkaraya
+            </p>
+            <p class="font-thin text-sm py-3 px-16 leading leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+              ultrices auctor neque non pellentesque. Praesent quis luctus
+              libero. Sed at venenatis ipsum, eu bibendum arcu. In in lectus vel
+              lacus.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="w-screen px-6 md:px-32">
+          <div class="flex justify-between"></div>
+          <h2 class="font-[Ephesis] mb-10 text-5xl text-center text-slate-500">
+            Sambutan Rektor
+          </h2>
+          <div class="flex justify-between">
+            <img
+              class="w-[100px] h-[100px] mb-5 rounded-full ring-2 mr-4"
+              src="https://apicms.thestar.com.my/uploads/images/2022/05/15/1585587.jpg"
+              alt="nama"
+            />
+
+            <p class="font-[Poppins] text-slate-500 leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+              egestas hendrerit risus ut vestibulum. Nam aliquet sapien a arcu
+              efficitur facilisis. Vivamus finibus suscipit mauris vel mollis.
+              In faucibus erat non sem blandit facilisis. In quis auctor lacus,
+              nec fermentum. In quis auctor lacus, nec fermentum.
+            </p>
+          </div>
+
+          <p class="font-[Poppins] text-slate-500 leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+            porttitor, neque quis dictum cursus, augue metus euismod felis, eu
+            pellentesque lacus mi eget ligula. Ut ut dapibus massa, ac elementum
+            sapien. Suspendisse magna dolor, pulvinar in ante quis, aliquam
+            sagittis tortor. Duis auctor tellus sit amet nisl ultrices, ac
+            bibendum ligula faucibus. Etiam sed convallis urna, quis posuere
+            lectus. Proin dictum scelerisque purus, vitae molestie quam
+            fringilla quis. Proin laoreet libero non luctus viverra. Suspendisse
+            porttitor vehicula consectetur. Integer sed metus ut lorem
+            vestibulum consectetur. Vestibulum facilisis massa a justo.
+          </p>
+
+          <div
+            class="h-[2px] mt-14 mb-14 bg-slate-600 w-full md:mt-14 md:mb-32"
+          ></div>
+        </div>
+      </div>
+      <div class="container font-[Poppins]">
+        <div class="flex-wrap px-4 flex md:px-32">
+          <div class="w-full md:w-1/2">
+            <p class="text-2xl mb-8 font-semibold">Galery Kegiatan</p>
+            <div class="flex flex-wrap">
+              <div class="flex justify-evenly mb-10">
+                <img
+                  class="w-[120px] h-[100px] rounded-md"
+                  src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIzfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                  alt=""
+                />
+                <p class="pl-8">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do
+                </p>
+              </div>
+              <div class="flex justify-evenly mb-10">
+                <img
+                  class="w-[120px] h-[100px] rounded-md"
+                  src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIzfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                  alt=""
+                />
+                <p class="pl-8">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do
+                </p>
+              </div>
+              <div class="flex justify-evenly mb-10">
+                <img
+                  class="w-[120px] h-[100px] rounded-md"
+                  src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIzfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                  alt=""
+                />
+                <p class="pl-8">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do
+                </p>
+              </div>
+              <div class="flex justify-evenly mb-10">
+                <img
+                  class="w-[120px] h-[100px] rounded-md"
+                  src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIzfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                  alt=""
+                />
+                <p class="pl-8">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2">
+            <p class="text-2xl mb-8 font-semibold">Galery Pengumuman</p>
+            <div class="flex flex-wrap">
+              <div class="flex justify-evenly mb-10">
+                <img
+                  class="w-[120px] h-[100px] rounded-md"
+                  src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIzfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                  alt=""
+                />
+                <p class="pl-8">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do
+                </p>
+              </div>
+              <div class="flex justify-evenly mb-10">
+                <img
+                  class="w-[120px] h-[100px] rounded-md"
+                  src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIzfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                  alt=""
+                />
+                <p class="pl-8">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do
+                </p>
+              </div>
+              <div class="flex justify-evenly mb-10">
+                <img
+                  class="w-[120px] h-[100px] rounded-md"
+                  src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIzfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                  alt=""
+                />
+                <p class="pl-8">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do
+                </p>
+              </div>
+              <div class="flex justify-evenly mb-10">
+                <img
+                  class="w-[120px] h-[100px] rounded-md"
+                  src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTIzfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                  alt=""
+                />
+                <p class="pl-8">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="bg-sky-400 font-[Inter] text-white">
+      <p class="py-5 px-5 text-center">Copyright Ahmad munir 2023</p>
+    </footer>
+    <script>
+      function menu(e) {
+        console.log(e.name);
+        let lists = document.querySelector('ul');
+        e.name === 'menu-outline'
+          ? ((e.name = 'close-outline'),
+            lists.classList.remove('opacity-0'),
+            lists.classList.add('top-[48px]'),
+            lists.classList.add('opacity-100'))
+          : ((e.name = 'menu-outline'),
+            lists.classList.remove('top-[80px]'),
+            lists.classList.remove('opacity-100'),
+            lists.classList.add('opacity-0'));
+      }
+    </script>
+  </body>
+</html>

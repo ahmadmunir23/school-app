@@ -1,0 +1,437 @@
+<% layout('layouts/boilerplate') %>
+<section class="mt-20" id="data-user" data-nama="<%= siswa.nama %>">
+  <div id="parent-data" class="container w-screen flex flex-wrap pl-24">
+    <div class="md:w-1/5 mr-8">
+      <img
+        class="h-[270px] w-[200px] rounded-md"
+        src="<%= siswa.foto %>"
+        alt=""
+      />
+    </div>
+    <div class="w-full md:w-1/3 text-slate-700">
+      <p>Nama : <%= siswa.nama %></p>
+      <hr class="my-2" />
+      <p>Umur : <%= siswa.umur %></p>
+      <hr class="my-2" />
+      <p>Alamat : <%= siswa.alamat %></p>
+      <hr class="my-2" />
+      <p>Tempat dan Tanggal Lahir : <%= siswa.ttl %></p>
+      <hr class="my-2" />
+      <p>NIK : <%= siswa.nik %></p>
+      <hr class="my-2" />
+      <p>Kelas : <%= siswa.kelas %></p>
+      <hr class="my-2" />
+      <p>Angkatan : <%= siswa.angkatan %></p>
+      <hr class="my-2" />
+      <p>Nomor Ponsel Siswa : <%= siswa.nomorPonsel %></p>
+      <hr class="my-2" />
+      <p>Nomor Ponsel Orangtua atau Wali : <%= siswa.nomorPonselOrangtua %></p>
+      <hr class="my-2" />
+      <p>Wali Kelas : <%= siswa.waliKelas.nama %></p>
+      <hr class="my-2" />
+    </div>
+    <div class="pl-8 mb-10 pr-16">
+      <% if (user.role === 'admin' || user._id.equals(siswa.waliKelas._id)) { %>
+      <a
+        href="#"
+        id="edit-data-btn"
+        class="block py-2 px-1 cursor-pointer bg-yellow-400 rounded-lg text-slate-700"
+        >Edit Data</a
+      >
+      <% } %>
+    </div>
+    <% if (user.role === 'admin' || user._id.equals(siswa.waliKelas._id)) { %>
+    <div class="pl-28 mb-10">
+      <form
+        action="http://localhost:3000/api/v1/siswa/<%= siswa.nama %>?_method=DELETE"
+        method="POST"
+        class="block py-2 px-1 bg-red-400 cursor-pointer rounded-lg text-slate-700"
+      >
+        <button>Hapus Siswa</button>
+      </form>
+    </div>
+    <% } %>
+  </div>
+  <section class="mt-10 mb-10 md:pl-24">
+    <div class="pl-4 mb-4 md:pl-0 cursor-pointer">
+      <% if (user.role === 'admin' || user._id.equals(siswa.waliKelas._id)) { %>
+      <a
+        id="edit-nilai-btn"
+        href="#"
+        class="py-2 px-1 bg-yellow-400 rounded-lg text-slate-700"
+        >Edit Nilai</a
+      >
+      <% } %>
+    </div>
+    <div
+      id="parent-node-nilai"
+      class="pl-4 container flex flex-wrap w-screen md:pl-0"
+      data-nilailength="<%= siswa.nilai.length %>"
+    >
+      <div class="flex flex-wrap text-slate-700">
+        <% siswa.nilai.forEach((e, i) => { %>
+        <div id="parent-user-data" class="mr-10">
+          <div class="flex ring-2 rounded-lg py-4 px-4 mb-10">
+            <div class="pr-6">
+              <p class="pb-2">Nilai</p>
+              <p class="pb-2"><%= e.waktu %></p>
+              <p class="pb-2">Ips:</p>
+              <p class="pb-2">Ipa:</p>
+              <p class="pb-2">Bahasa Indonesia:</p>
+              <p class="pb-2">Sejarah:</p>
+              <p class="pb-2">Matematika:</p>
+              <p class="pb-2">Pkn:</p>
+              <p class="pb-2">Penjaskes:</p>
+            </div>
+            <div class="pt-16">
+              <p class="pb-2"><%= e.ips %></p>
+              <p class="pb-2"><%= e.ipa %></p>
+              <p class="pb-2"><%= e.bahasaIndonesia %></p>
+              <p class="pb-2"><%= e.sejarah %></p>
+              <p class="pb-2"><%= e.matematika %></p>
+              <p class="pb-2"><%= e.pkn %></p>
+              <p class="pb-2"><%= e.penjaskes %></p>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+</section>
+<!-- 
+<div class="w-screen">
+  
+</div> -->
+
+<script>
+  const editDataBtn = document.getElementById('edit-data-btn');
+  const editNilaiBtn = document.getElementById('edit-nilai-btn');
+
+  // const addSemesterBtn = document.getElementById('tambah-nilai-semester-btn');
+  // if (addSemesterBtn) {
+  //   addSemesterBtn.addEventListener('click', (e) => console.log('ok'));
+  // }
+  const deleteSemester = function (e) {
+    e.parentNode.remove();
+  };
+  const addSemester = function (e) {
+    const newForm = document.createElement('div');
+    // e.previousElementSibling.parentNode.parentNode.dataset.nilailength;
+    const nilaiLength =
+      e.previousElementSibling.firstElementChild.children.length;
+    const classnewForm = ['w-full', 'md:w-1/3', 'mr-10', 'mt-10'];
+    newForm.classList.add(...classnewForm);
+    newForm.innerHTML = `<div class="flex justify-between pb-2">
+    <label class="font-semibold" for="semester">Semester</label>
+    <input class="ring-2 rounded-md" type="text" id="semester" name="nilai[${
+      nilaiLength + 1
+    }][waktu]" placeholder="Semester (angka)"/>
+  </div>
+  <div class="flex justify-between pb-2">
+    <label for="ips">Ips:</label>
+    <input class="ring-2 rounded-md" type="number" id="ips" name="nilai[${
+      nilaiLength + 1
+    }][ips]"/>
+  </div>
+  <div class="flex justify-between pb-2">
+    <label for="ipa">Ipa:</label>
+    <input class="ring-2 rounded-md" type="number" id="ipa" name="nilai[${
+      nilaiLength + 1
+    }][ipa]" />
+  </div>
+  <div class="flex justify-between pb-2">
+    <label for="bahasaIndonesia">Bahasa Indonesia:</label>
+    <input
+      class="ring-2 rounded-md"
+      type="number"
+      id="bahasaIndonesia"
+      name="nilai[${nilaiLength + 1}][bahasaIndonesia]"
+
+    />
+  </div>
+  <div class="flex justify-between pb-2">
+    <label for="sejarah">Sejarah:</label>
+    <input class="ring-2 rounded-md" type="number" id="sejarah" name="nilai[${
+      nilaiLength + 1
+    }][sejarah]"/>
+  </div>
+  <div class="flex justify-between pb-2">
+    <label for="matematika">Matematika:</label>
+    <input
+      class="ring-2 rounded-md"
+      type="number"
+      id="matematika"
+      name="nilai[${nilaiLength + 1}][matematika]"
+
+    />
+  </div>
+  <div class="flex justify-between pb-2">
+    <label for="pkn">Pkn:</label>
+    <input class="ring-2 rounded-md" type="number" id="pkn" name="nilai[${
+      nilaiLength + 1
+    }][pkn]" />
+  </div>
+  <div class="flex justify-between pb-2">
+    <label for="penjaskes">Penjaskes:</label>
+    <input class="ring-2 rounded-md" type="number" id="penjaskes" name="nilai[${
+      nilaiLength + 1
+    }][penjaskes]" />
+  </div>`;
+    e.previousElementSibling.firstElementChild.append(newForm);
+  };
+  if (editNilaiBtn) {
+    editNilaiBtn.addEventListener('click', function (e) {
+      if (e.target.parentNode.nextElementSibling.id === 'parent-node-nilai') {
+        const formEditData = document.createElement('div');
+        const classesToAdd = ['mt-10', 'flex', 'flex-wrap'];
+        formEditData.classList.add(...classesToAdd);
+        formEditData.innerHTML = `<form
+        class="w-screen"
+        method="POST"
+        action="http://localhost:3000/api/v1/siswa/<%= siswa.nama.split(' ').join('-') %>?_method=PATCH">
+        <div class="flex flex-wrap">
+          <% siswa.nilai.forEach((e, i) => { %>
+        <div class="w-full md:w-1/3 mr-10 mb-10 text-slate-700">
+        <div class="flex justify-between pb-2">
+          <label class="font-semibold" for="semester"Semester</label>
+          <input class="ring-2 rounded-md" type="text" id="semester" name="nilai[<%= i %>][waktu]" value="<%= e.waktu %>"/>
+        </div>
+        <div class="flex justify-between pb-2">
+          <label for="ips">Ips:</label>
+          <input class="ring-2 rounded-md" type="number" id="ips" name="nilai[<%= i %>][ips]" value="<%= e.ips %>"/>
+        </div>
+        <div class="flex justify-between pb-2">
+          <label for="ipa">Ipa:</label>
+          <input class="ring-2 rounded-md" type="number" id="ipa" name="nilai[<%= i %>][ipa]" value="<%= e.ipa %>"/>
+        </div>
+        <div class="flex justify-between pb-2">
+          <label for="bahasaIndonesia">Bahasa Indonesia:</label>
+          <input
+            class="ring-2 rounded-md"
+            type="number"
+            id="bahasaIndonesia"
+            name="nilai[<%= i %>][bahasaIndonesia]"
+            value="<%= e.bahasaIndonesia %>"
+          />
+        </div>
+        <div class="flex justify-between pb-2">
+          <label for="sejarah">Sejarah:</label>
+          <input class="ring-2 rounded-md" type="number" id="sejarah" name="nilai[<%= i %>][sejarah]" value="<%= e.sejarah %>"/>
+        </div>
+        <div class="flex justify-between pb-2">
+          <label for="matematika">Matematika:</label>
+          <input
+            class="ring-2 rounded-md"
+            type="number"
+            id="matematika"
+            name="nilai[<%= i %>][matematika]"
+            value="<%= e.matematika %>"
+          />
+        </div>
+        <div class="flex justify-between pb-2">
+          <label for="pkn">Pkn:</label>
+          <input class="ring-2 rounded-md" type="number" id="pkn" name="nilai[<%= i %>][pkn]" value="<%= e.pkn %>"/>
+        </div>
+        <div class="flex justify-between pb-2">
+          <label for="penjaskes">Penjaskes:</label>
+          <input class="ring-2 rounded-md" type="number" id="penjaskes" name="nilai[<%= i %>][penjaskes]" value="<%= e.penjaskes %>"/>
+        </div>
+      <div class="flex justify-center items-center text-slate-700 bg-red-400 rounded-md w-1/3 cursor-pointer" onclick="deleteSemester(this)">
+        <span class="font-semibold text-3xl"><ion-icon name="trash-outline"></ion-icon></span>
+        <p>Hapus</p>
+      </div>
+        </div>
+        <% }) %>
+        </div>
+        <button class="px-2 mt-8 py-2 bg-sky-400 rounded-lg">Simpan</button>
+      </form>
+    <div id="tambah-nilai-semester-btn" class="flex justify-center items-center pt-4 cursor-pointer text-slate-700" onclick="addSemester(this)">
+      <span class="text-6xl font-bold "><ion-icon name="add-outline"></ion-icon></span>
+      <p>Tambah Nilai Semester</p>
+      </div>
+      `;
+
+        e.target.parentNode.nextElementSibling.id = 'parent-node-nilaiForm';
+        const classFormNilai = ['w-screen', 'flex', 'flex-wrap'];
+        formEditData.classList.add(...classFormNilai);
+        e.target.parentNode.nextElementSibling.replaceChild(
+          formEditData,
+          e.target.parentNode.nextElementSibling.firstElementChild
+        );
+        const classesBtnToAdd = [
+          'mb-5',
+          ,
+          'py-2',
+          'px-2',
+          'text-slate-700',
+          'bg-red-400',
+          'rounded-lg',
+        ];
+        editNilaiBtn.className = '';
+        editNilaiBtn.classList.add(...classesBtnToAdd);
+        editNilaiBtn.textContent = 'Batal';
+      } else {
+        const userNilaiData = document.createElement('div');
+        const parentNilaiData = document.getElementById('parent-nilai-data');
+        const classesToAdd = ['w-screen', 'flex', 'flex-wrap'];
+        userNilaiData.classList.add(...classesToAdd);
+        userNilaiData.innerHTML = `<% siswa.nilai.forEach((e, i) => { %>
+          <div id="parent-user-data" class="flex mr-10 mb-10 text-slate-700">
+            <div class="flex ring-2 rounded-lg py-4 px-4">
+              <div class="pr-6">
+                <p class="pb-2">Nilai</p>
+                <p class="pb-2"><%= e.waktu %></p>
+                <p class="pb-2">Ips:</p>
+                <p class="pb-2">Ipa:</p>
+                <p class="pb-2">Bahasa Indonesia:</p>
+                <p class="pb-2">Sejarah:</p>
+                <p class="pb-2">Matematika:</p>
+                <p class="pb-2">Pkn:</p>
+                <p class="pb-2">Penjaskes:</p>
+              </div>
+              <div class="pt-16">
+                <p class="pb-2"><%= e.ips %></p>
+                <p class="pb-2"><%= e.ipa %></p>
+                <p class="pb-2"><%= e.bahasaIndonesia %></p>
+                <p class="pb-2"><%= e.sejarah %></p>
+                <p class="pb-2"><%= e.matematika %></p>
+                <p class="pb-2"><%= e.pkn %></p>
+              </div>
+            </div>
+          </div>
+          <% }) %>`;
+        e.target.parentNode.nextElementSibling.id = 'parent-node-nilai';
+        e.target.parentNode.nextElementSibling.replaceChild(
+          userNilaiData,
+          e.target.parentNode.nextElementSibling.firstElementChild
+        );
+        const classesBtnToAdd = [
+          'mb-5',
+          ,
+          'py-2',
+          'px-2',
+          'text-slate-700',
+          'bg-yellow-400',
+          'rounded-lg',
+        ];
+        editNilaiBtn.className = '';
+        editNilaiBtn.classList.add(...classesBtnToAdd);
+        editNilaiBtn.textContent = 'Edit Nilai';
+      }
+    });
+  }
+  //
+  //
+  //
+  if (editDataBtn) {
+    editDataBtn.addEventListener('click', function (e) {
+      if (e.target.parentNode.parentNode.id == 'parent-data') {
+        const formEditData = document.createElement('div');
+        const classesToAdd = ['w-full', 'md:w-1/3', 'text-slate-700'];
+        formEditData.classList.add(...classesToAdd);
+        formEditData.innerHTML = `<div>
+          <form id="form-edit-siswa" class="flex flex-col h-auto w-[280px] mb-[40px]">
+            <label for="nama">Nama</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="nama" id="nama" value="<%= siswa.nama %>"/>
+            <label for="umur">Umur</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="number" name="umur" id="umur" value="<%= siswa.umur %>"/>
+            <label for="alamat">Alamat</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="alamat" id="alamat" value="<%= siswa.alamat %>"/>
+            <label for="ttl">Tempat dan Tanggal Lahir</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="ttl" id="ttl" value="<%= siswa.ttl %>"/>
+            <label for="nik">NIK</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="nik" id="nik" maxlength="16" value="<%= siswa.nik %>"/>
+            <label for="kelas">Kelas</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="kelas" id="kelas" value="<%= siswa.kelas %>"/>
+            
+            <label for="angkatan">Angkatan</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="number" name="angkatan" id="angkatan" value="<%= siswa.angkatan %>"/>
+            
+            <label for="nomorPonsel">Nomor Ponsel Siswa</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="nomorPonsel" id="nomorPonsel" value="<%= siswa.nomorPonsel %>"/>
+            
+            <label for="nomorPonselOrangtua">Nomor Ponsel Orangtua atau Wali</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="nomorPonselOrangtua" id="nomorPonselOrangtua" value="<%= siswa.nomorPonselOrangtua %>"/>
+            
+            <label for="kelas">WaliKelas</label>
+            <select name="waliKelas" id="waliKelas">
+            <% allGuru.forEach(e => { %>
+            <% if (e._id.equals(siswa.waliKelas._id)) { %>
+            <option value="<%= e._id %>" selected><%= e.nama %></option>
+            <% } else {%>
+            <option value="<%= e._id %>"><%= e.nama %></option>
+            <% } %> <% }) %>
+        </select>
+            <button
+                id="simpan-data-siswa"
+                class="py-3 px-1 bg-sky-400 rounded-lg"
+                type="submit">
+                Simpan
+              </button>
+          </form>
+        </div>`;
+        e.target.parentNode.parentNode.replaceChild(
+          formEditData,
+          e.target.parentNode.previousElementSibling
+        );
+        e.target.parentNode.parentNode.id = 'form-data';
+        const classesBtnToAdd = [
+          'mb-5',
+          'block',
+          'py-2',
+          'px-1',
+          'bg-red-400',
+          'text-slate-700',
+          'rounded-lg',
+        ];
+        editDataBtn.className = '';
+        editDataBtn.classList.add(...classesBtnToAdd);
+        editDataBtn.textContent = 'Batal';
+      } else {
+        const dataSiswa = document.createElement('div');
+        const classesToAdd = ['w-full', 'md:w-1/3', 'text-slate-700'];
+
+        dataSiswa.classList.add(...classesToAdd);
+        dataSiswa.innerHTML = `<p>Nama : <%= siswa.nama %></p>
+        <hr class="my-2" />
+        <p>Umur : <%= siswa.umur %></p>
+        <hr class="my-2" />
+        <p>Alamat : <%= siswa.alamat %></p>
+        <hr class="my-2" />
+        <p>Tempat dan Tanggal Lahir : <%= siswa.ttl %>3</p>
+        <hr class="my-2" />
+        <p>NIK : <%= siswa.nik %></p>
+        <hr class="my-2" />
+        <p>Kelas : <%= siswa.kelas %></p>
+        <hr class="my-2" />
+        <p>Angkatan : <%= siswa.angkatan %></p>
+        <hr class="my-2" />
+        <p>Nomor Ponsel : <%= siswa.nomorPonsel %></p>
+        <hr class="my-2" />
+        <p>Nomor Ponsel Orangtua atau Wali : <%= siswa.nomorPonselOrangtua %></p>
+        <hr class="my-2" />
+        <p>Wali Kelas : <%= siswa.waliKelas.nama %></p>
+        <hr class="my-2" />
+        `;
+        e.target.parentNode.parentNode.replaceChild(
+          dataSiswa,
+          e.target.parentNode.previousElementSibling
+        );
+        const classesBtnToAdd = [
+          'mb-5',
+          'block',
+          'py-2',
+          'px-1',
+          'bg-yellow-400',
+          'text-slate-700',
+          'rounded-lg',
+        ];
+        editDataBtn.className = '';
+        editDataBtn.classList.add(...classesBtnToAdd);
+        editDataBtn.textContent = 'Edit Data';
+        e.target.parentNode.parentNode.id = 'parent-data';
+      }
+    });
+  }
+</script>

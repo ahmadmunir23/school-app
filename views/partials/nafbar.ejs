@@ -1,0 +1,86 @@
+<header
+  class="bg-white shadow fixed top-0 z-[1] font-[Inter] w-screen md:flex md:justify-between py-3"
+>
+  <div class="flex justify-between items-center">
+    <a href="http://localhost:3000/" class="ml-4 text-xl text-sky-600"
+      >SMKN 4 Palangkaraya</a
+    >
+    <span class="text-3xl mr-6 cursor-pointer md:hidden">
+      <ion-icon
+        name="menu-outline"
+        class="pt-3"
+        onclick="menu(this)"
+      ></ion-icon>
+    </span>
+  </div>
+  <ul
+    class="absolute pl-7 pb-7 w-full top-[-300px] bg-white transition-all opacity-0 eas-in duration-500 md:opacity-100 md:py-0 md:pl-0 md:w-auto md:static md:z-auto md:flex md:items-center"
+  >
+    <li
+      id="data-dropdown"
+      class="mx-4 my-5 md:my-0 text-sm text-slate-500 hover:text-sky-500"
+    >
+      <a href="#">DATA</a>
+    </li>
+    <li class="mx-4 my-5 md:my-0 text-sm text-slate-500 hover:text-sky-500">
+      <a href="/post">BERITA</a>
+    </li>
+    <li class="mx-4 my-5 md:my-0 text-sm text-slate-500 hover:text-sky-500">
+      <a href="#">DAFTAR</a>
+    </li>
+    <li class="mx-4 my-5 md:my-0 text-sm text-slate-500 hover:text-sky-500">
+      <a href="#">GALLERY</a>
+    </li>
+
+    <div class="md:flex md:pr-7">
+      <% if (!user) { %>
+
+      <a
+        href="/login"
+        class="bg-sky-400 px-4 py-2 mx-3 rounded text-white hover:bg-sky-500"
+        >Login</a
+      >
+
+      <% } else { %>
+      <a
+        href="/siswa/create"
+        class="my-5 md:my-0 text-slate-500 pr-6 text-sm pt-[10px] hover:text-sky-500 font-[Inter]"
+        >SISWA BARU</a
+      >
+      <a
+        href="/guru/<%= user.nama %>"
+        class="my-5 md:my-0 text-slate-500 pr-6 text-base pt-2 hover:text-sky-500"
+        >Akun</a
+      >
+      <a
+        href="/logout"
+        class="bg-sky-400 px-4 py-2 mx-3 rounded text-white hover:bg-sky-500"
+        >Logout</a
+      >
+      <% } %>
+    </div>
+  </ul>
+  <% if (!user) { %>
+  <div
+    id="dropdown"
+    class="absolute z-[1] top-16 right-[260px] rounded-md px-4 py-4 bg-white shadow hidden md:top-12 md:right-[380px]"
+  >
+    <ul class="text-slate-500 text-sm">
+      <li class="hover:text-sky-500"><a href="/guru">GURU</a></li>
+      <li class="py-3 hover:text-sky-500"><a href="/data">DATA</a></li>
+      <li class="hover:text-sky-500"><a href="/post/create">POST</a></li>
+    </ul>
+  </div>
+  <% } else { %>
+  <div
+    id="dropdown"
+    class="absolute z-[1] top-16 right-[260px] rounded-md px-4 py-4 bg-white shadow hidden md:top-12 md:right-[560px]"
+  >
+    <ul class="text-slate-500 text-sm">
+      <li class="hover:text-sky-500"><a href="/guru">GURU</a></li>
+      <li class="py-3 hover:text-sky-500"><a href="/data">DATA</a></li>
+      <li class="hover:text-sky-500"><a href="/post/create">POST</a></li>
+    </ul>
+  </div>
+  <% } %>
+</header>

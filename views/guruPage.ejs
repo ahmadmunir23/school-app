@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate') %>
+<section class="mt-[102px] mb-20">
+  <div class="container w-screen px-3 md:pl-24 font-[Poppins] text-slate-700">
+    <div class="w-full">
+      <% if (user.role === 'admin') { %>
+      <a href="/guru/create" class="hover:text-sky-500"
+        >Buat Guru Baru
+        <span><ion-icon name="arrow-forward-circle-outline"></ion-icon></span
+      ></a>
+      <% } %>
+      <div class="text-xl font-semibold mb-5 flex justify-between w-full">
+        <p class="mr-1 md:mr-[24px]">Foto</p>
+        <p class="md:mr-2">Nama</p>
+        <p class="mr-6">Umur</p>
+        <p class="mr-14">Nik</p>
+        <p>Detail</p>
+      </div>
+      <div class="w-full">
+        <% allGuru.forEach(e => { %>
+
+        <div class="w-full flex justify-between mb-2">
+          <img
+            class="w-[40px] h-[40px] rounded-md"
+            src="https://images.unsplash.com/photo-1599519458632-a0689c81836e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTMwfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            alt=""
+          />
+          <div class="w-[10%] text-center mr-10 md:mr-0">
+            <p class="text-slate-600 text-sm"><%= e.nama %></p>
+          </div>
+
+          <p class="text-slate-600 text-sm"><%= e.umur %></p>
+
+          <p class="text-slate-600 text-sm"><%= e.nik %></p>
+          <a
+            href="http://localhost:3000/guru/<%= e.nama.split(' ').join('-') %>"
+            class=""
+            >Detail
+            <span
+              ><ion-icon name="arrow-forward-circle-outline"></ion-icon></span
+          ></a>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>

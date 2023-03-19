@@ -1,0 +1,111 @@
+<% layout('layouts/boilerplate') %>
+<section>
+  <div class="container mt-20">
+    <div
+      id="error-msg"
+      class="w-screen flex justify-center flex-col items-center text-slate-700"
+    >
+      <h1 class="py-5 font-semibold text-xl">Buat Data Guru Baru</h1>
+      <form
+        id="create-siswa-button"
+        class="flex flex-col h-auto w-[280px] mb-[40px]"
+      >
+        <label for="nama">Nama Guru</label>
+        <input
+          id="nama"
+          type="text"
+          name="nama"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        />
+
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        />
+
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        />
+
+        <label for="passwordConfirm">Konfirmasi password</label>
+        <input
+          id="passwordConfirm"
+          type="password"
+          name="passwordConfirm"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        />
+
+        <label for="umur">Umur</label>
+        <input
+          id="umur"
+          type="number"
+          name="umur"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        />
+
+        <label for="alamat">Alamat</label>
+        <input
+          id="alamat"
+          type="text"
+          name="alamat"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        />
+
+        <label for="nik">NIK</label>
+        <input
+          id="nik"
+          type="text"
+          maxlength="16"
+          name="nik"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        />
+
+        <label for="ttl">Tempat dan Tanggal Lahir</label>
+        <input
+          id="ttl"
+          type="text"
+          name="ttl"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        />
+
+        <label for="nomorPonsel">Nomor Ponsel</label>
+        <input
+          id="nomorPonsel"
+          type="text"
+          name="nomorPonsel"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        />
+
+        <label for="role">Role: "admin", atau "guru"</label>
+        <select id="role" class="mb-5 ring-2 rounded-sm py-1 px-2">
+          <option value="admin">admin</option>
+          <option value="guru">guru</option>
+        </select>
+
+        <!-- <label for="foto">Foto siswa</label>
+        <input
+          id="foto"
+          type="file"
+          accept="image/*"
+          name="foto"
+          class="mb-5 ring-2 rounded-sm py-1 px-2"
+        /> -->
+        <button
+          id="registerGuruBtn"
+          class="py-3 px-1 bg-sky-400 rounded-lg font-semibold text-white"
+          type="submit
+        "
+        >
+          Buat Data
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

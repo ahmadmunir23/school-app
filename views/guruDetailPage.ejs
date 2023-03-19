@@ -1,0 +1,166 @@
+<% layout('layouts/boilerplate') %>
+<section class="mt-28 mb-36" id="data-user" data-nama="<%= guru.nama %>">
+  <div
+    id="parent-data"
+    data-guruRole="<%= guru.role %>"
+    class="container w-screen flex flex-wrap px-4 md:pl-24"
+  >
+    <div class="md:w-1/5 mr-8">
+      <img
+        class="h-[270px] w-[200px] rounded-md"
+        src="https://images.unsplash.com/photo-1599519458632-a0689c81836e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTMwfHxmcmVlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+        alt=""
+      />
+    </div>
+    <div class="w-full md:w-1/3 text-slate-700">
+      <p>Nama : <%= guru.nama %></p>
+      <hr class="my-2" />
+      <p>Umur : <%= guru.umur %></p>
+      <hr class="my-2" />
+      <p>Alamat : <%= guru.alamat %></p>
+      <hr class="my-2" />
+      <p>Tempat dan Tanggal Lahir : <%= guru.ttl %></p>
+      <hr class="my-2" />
+      <p>NIK : <%= guru.nik %></p>
+      <hr class="my-2" />
+      <p>Email : <%= guru.email %></p>
+      <hr class="my-2" />
+      <p>Peran : <%= guru.role %></p>
+      <hr class="my-2" />
+    </div>
+    <div class="pl-8 mb-10 pr-16">
+      <% if (user.role === 'admin' || user._id.equals(guru._id)) { %>
+      <a
+        href="#"
+        id="edit-data-btn"
+        class="block py-2 px-1 cursor-pointer bg-yellow-400 rounded-lg text-slate-700"
+        >Edit Data</a
+      >
+      <% } %>
+    </div>
+    <% if (user.role === 'admin' || user._id.equals(guru._id)) { %>
+    <div class="pl-28 mb-10">
+      <form
+        action="http://localhost:3000/api/v1/guru/<%= guru.nama %>?_method=DELETE"
+        method="POST"
+        class="block py-2 px-1 bg-red-400 cursor-pointer rounded-lg text-slate-700"
+      >
+        <button>Hapus Guru</button>
+      </form>
+    </div>
+    <% } %>
+  </div>
+</section>
+<!-- 
+<div class="w-screen">
+  
+</div> -->
+
+<script>
+  const editDataBtn = document.getElementById('edit-data-btn');
+
+  // const addSemesterBtn = document.getElementById('tambah-nilai-semester-btn');
+  // if (addSemesterBtn) {
+  //   addSemesterBtn.addEventListener('click', (e) => console.log('ok'));
+  // }
+
+  editDataBtn.addEventListener('click', function (e) {
+    if (e.target.parentNode.parentNode.id == 'parent-data') {
+      const formEditData = document.createElement('div');
+      const classesToAdd = ['w-full', 'md:w-1/3', 'text-slate-700'];
+      formEditData.classList.add(...classesToAdd);
+      formEditData.innerHTML = `<div>
+          <form id="form-edit-guru" class="flex flex-col h-auto w-[280px] mb-[40px] mx-auto">
+            <label for="nama">Nama</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="nama" id="nama" value="<%= guru.nama %>"/>
+            <label for="umur">Umur</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="umur" id="umur" value="<%= guru.umur %>"/>
+            <label for="alamat">Alamat</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="alamat" id="alamat" value="<%= guru.alamat %>"/>
+            <label for="ttl">Tempat dan Tanggal Lahir</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="ttl" id="ttl" value="<%= guru.ttl %>"/>
+            <label for="nik">NIK</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="nik" id="nik" maxlength="16" value="<%= guru.nik %>"/>
+            <label for="email">Email</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="email" id="email" value="<%= guru.email %>"/>
+            
+            <label for="nomorPonsel">Nomor Ponsel</label>
+            <input class="mb-5 ring-2 rounded-sm py-1 px-2" type="text" name="nomorPonsel" id="nomorPonsel" value="<%= guru.nomorPonsel %>"/>
+            <% if (user.role === 'admin') { %>
+                <label for="role">Peran</label>
+                <select id="role" class="mb-5 ring-2 rounded-sm py-1 px-2">
+                  <% if (guru.role === 'admin') { %>
+                  <option value="admin" selected>admin</option>
+                  <option value="guru">guru</option>
+                  <% } else {%>
+                  <option value="guru" selected>guru</option>
+                  <option value="admin" >admin</option>
+                  <% } %>
+                </select>
+            <% } %>
+
+            <button
+                class="py-3 px-1 bg-sky-400 rounded-lg"
+                type="submit">
+                Simpan
+              </button>
+          </form>
+        </div>`;
+      e.target.parentNode.parentNode.replaceChild(
+        formEditData,
+        e.target.parentNode.previousElementSibling
+      );
+      e.target.parentNode.parentNode.id = 'form-data';
+      const classesBtnToAdd = [
+        'mb-5',
+        'block',
+        'py-2',
+        'px-1',
+        'bg-red-400',
+        'text-slate-700',
+        'rounded-lg',
+      ];
+      editDataBtn.className = '';
+      editDataBtn.classList.add(...classesBtnToAdd);
+      editDataBtn.textContent = 'Batal';
+    } else {
+      const dataGuru = document.createElement('div');
+      const classesToAdd = ['w-full', 'md:w-1/3', 'text-slate-700'];
+
+      dataGuru.classList.add(...classesToAdd);
+      dataGuru.innerHTML = `<p>Nama : <%= guru.nama %></p>
+        <hr class="my-2" />
+        <p>Umur : <%= guru.umur %></p>
+        <hr class="my-2" />
+        <p>Alamat : <%= guru.alamat %></p>
+        <hr class="my-2" />
+        <p>Tempat dan Tanggal Lahir : <%= guru.ttl %>3</p>
+        <hr class="my-2" />
+        <p>NIK : <%= guru.nik %></p>
+        <hr class="my-2" />
+        <p>Email : <%= guru.email %></p>
+        <hr class="my-2" />
+        
+        <p>Peran : <%= guru.role %></p>
+        <hr class="my-2" />
+        `;
+      e.target.parentNode.parentNode.replaceChild(
+        dataGuru,
+        e.target.parentNode.previousElementSibling
+      );
+      const classesBtnToAdd = [
+        'mb-5',
+        'block',
+        'py-2',
+        'px-1',
+        'bg-yellow-400',
+        'text-slate-700',
+        'rounded-lg',
+      ];
+      editDataBtn.className = '';
+      editDataBtn.classList.add(...classesBtnToAdd);
+      editDataBtn.textContent = 'Edit Data';
+      e.target.parentNode.parentNode.id = 'parent-data';
+    }
+  });
+</script>
