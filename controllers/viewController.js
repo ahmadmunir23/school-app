@@ -69,7 +69,6 @@ exports.getSearch = catchAsync(async (req, res, next) => {
   });
 });
 exports.getCreatePostPage = catchAsync(async (req, res) => {
-  console.log('POOOST PAGEE');
   res.status(200).render('postNews');
 });
 exports.getAllPostPage = catchAsync(async (req, res) => {

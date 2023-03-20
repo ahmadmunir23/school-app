@@ -25,7 +25,6 @@ const createSendToken = (user, statusCode, res) => {
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   res.cookie('jwt', token, cookieOptions);
   user.password = undefined;
-  console.log('createSendToken');
   res.status(statusCode).json({
     status: 'Succes',
   });
@@ -48,7 +47,7 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!email || !password)
     return next(new AppError('Masukkan email dan Password', 400));
   const user = await Guru.findOne({ email }).select('+password');
-  console.log('hi');
+
   if (!user || !(await user.correctPassword(password, user.password)))
     return next(new AppError('Password atau email salah', 401));
   createSendToken(user, 200, res);

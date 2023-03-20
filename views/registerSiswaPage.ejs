@@ -1,8 +1,9 @@
 <% layout('layouts/boilerplate') %>
 <section>
   <div class="container mt-20">
-    <div id="error-msg"
-    class="w-screen flex justify-center flex-col items-center text-slate-700"
+    <div
+      id="error-msg"
+      class="w-screen flex justify-center flex-col items-center text-slate-700"
     >
       <h1 class="py-5 font-semibold text-xl">Buat Data Siswa Baru</h1>
       <form
@@ -35,7 +36,7 @@
 
         <label for="nik">NIK</label>
         <input
-        maxlength="16"
+          maxlength="16"
           id="nik"
           type="text"
           name="nik"
@@ -111,43 +112,3 @@
     </div>
   </div>
 </section>
-<!-- <script>
-  const createSiswaBtn = document.querySelector('#create-siswa-button');
-  const name = document.querySelector('#name').value;
-  const umur = document.querySelector('#umur').value;
-  const alamat = document.querySelector('#alamat').value;
-  const ttl = document.querySelector('#ttl').value;
-  const nik = document.querySelector('#nik').value;
-  const foto = document.querySelector('#foto').value;
-
-  if (createSiswaBtn) {
-    createSiswaBtn.addEventListener('submit', function (e) {
-      e.preventDefault();
-      console.log(name);
-      const form = new FormData();
-      form.append('name', document.querySelector('#name').value);
-      form.append('umur', document.querySelector('#umur').value);
-      form.append('alamat', document.querySelector('#alamat').value);
-      form.append('ttl', document.querySelector('#ttl').value);
-      form.append('nik', document.querySelector('#nik').value);
-      form.append('foto', document.querySelector('#foto').files[0]);
-      console.log(form, 'hi');
-      const name = document.querySelector('#name').value;
-      const email = document.querySelector('#email').value;
-      axios
-        .post(
-          'http://localhost:3000/api/v1/siswa',
-          {
-            form,
-          },
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        )
-        .then((response) => console.log(response))
-        .catch((err) => console.log(err));
-    });
-  } -->
-</script>

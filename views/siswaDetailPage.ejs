@@ -189,7 +189,7 @@
         formEditData.innerHTML = `<form
         class="w-screen"
         method="POST"
-        action="http://localhost:3000/api/v1/siswa/<%= siswa.nama.split(' ').join('-') %>?_method=PATCH">
+        action="/api/v1/siswa/<%= siswa.nama.split(' ').join('-') %>?_method=PATCH">
         <div class="flex flex-wrap">
           <% siswa.nilai.forEach((e, i) => { %>
         <div class="w-full md:w-1/3 mr-10 mb-10 text-slate-700">

@@ -77,7 +77,6 @@ const guruSchema = new mongoose.Schema({
 
 guruSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
-  console.log('pre');
   this.password = await bcrypt.hash(this.password, 12);
   this.passwordConfirm = undefined;
 

@@ -16,18 +16,6 @@ exports.getAll = (Model) =>
       },
     });
   });
-// exports.getAll = (Model) =>
-//   catchAsync(async (req, res) => {
-//     console.log(req.query, 'query');
-//     const allData = await Model.find();
-//     res.status(200).json({
-//       status: 'Succes',
-//       result: allData.length,
-//       data: {
-//         data: allData,
-//       },
-//     });
-//   });
 
 exports.getOne = (Model) =>
   catchAsync(async (req, res, next) => {
@@ -50,11 +38,8 @@ exports.createOne = (Model) =>
         return next(
           new AppError('password dan password konfirmasi tidak sama', 400)
         );
-      console.log('halo');
       const newUser = new Model(req.body);
       await newUser.save();
-      console.log(newUser, 'New User');
-
       res.status(201).json({
         status: 'Succes',
         data: {
@@ -105,7 +90,6 @@ exports.updateOne = (Model) =>
     //   return next(
     //     new AppError('Hanya walikelas dan admin yang bisa mengubah data', 401)
     //   );
-    console.log(req.body);
     const doc = await Model.findOneAndUpdate({ nama }, req.body, {
       new: true,
       runValidators: true,

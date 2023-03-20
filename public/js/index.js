@@ -9,39 +9,18 @@ const sectionData = document.getElementById('section-data');
 const parentData = document.getElementById('parent-data');
 const reset = document.getElementById('reset');
 
-// const error = document.createElement('div');
-// const errorClass = [
-//   'text-white',
-//   'font-semibold',
-//   'fixed',
-//   'top-16',
-//   'py-3',
-//   'px-20',
-//   'bg-red-400',
-//   'rounded-lg',
-//   'alert',
-// ];
-// error.classList.add(...errorClass);
-// error.innerHTML = `<p>Error</p>`;
-
-// document.getElementById('error-msg').append(error);
-
 const requestApi = async (data, method, type) => {
   if (method === 'post') {
-    const result = await axios.post(
-      `http://localhost:3000/api/v1/${type}`,
-      data,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    );
+    const result = await axios.post(`/api/v1/${type}`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return result;
   }
   if (method === 'patch') {
     const result = await axios.patch(
-      `http://localhost:3000/api/v1/${type}/${document
+      `/api/v1/${type}/${document
         .getElementById('data-user')
         .dataset.nama.split(' ')
         .join('-')}`,
@@ -94,22 +73,20 @@ const showAlert = (type, msg, loc) => {
   }
 };
 
-if (reset) {
-  reset.children[2].addEventListener('click', async function (e) {
-    e.preventDefault();
-    try {
-      const email = document.getElementById('email').value;
-      const result = await axios.post(`http://localhost:3000/reset`, { email });
-      console.log(result);
-      if (result.data.status === 'Succes') {
-        showAlert('success', 'Link telah dikirim ke email', parentData);
-      }
-    } catch (err) {
-      console.log(err.response.data.message);
-      showAlert('error', err.response.data.message, parentData);
-    }
-  });
-}
+// if (reset) {
+//   reset.children[2].addEventListener('click', async function (e) {
+//     e.preventDefault();
+//     try {
+//       const email = document.getElementById('email').value;
+//       const result = await axios.post(`http://localhost:3000/reset`, { email });
+//       if (result.data.status === 'Succes') {
+//         showAlert('success', 'Link telah dikirim ke email', parentData);
+//       }
+//     } catch (err) {
+//       showAlert('error', err.response.data.message, parentData);
+//     }
+//   });
+// }
 
 /////////////// Update Siswa //////////////////
 if (parentData) {
@@ -149,7 +126,6 @@ if (parentData) {
           if (result.data.status === 'Succes')
             location.assign(`/siswa/${name.split(' ').join('-')}`);
         } catch (err) {
-          console.log(err);
           if (err.response.data.message.startsWith('Nik'))
             return showAlert('error', err.response.data.message, parentData);
           if (err.response.data.message.includes('umur'))
@@ -177,7 +153,6 @@ if (parentData) {
         try {
           const result = await requestApi(form, 'patch', 'guru');
           const nama = document.getElementById('nama').value;
-          console.log(result);
           let name = nama.split(' ');
           for (i = 0; i < name.length; i++) {
             name[i] =
@@ -238,11 +213,9 @@ if (registerGuruBtn) {
         name[i] = name[i][0].toUpperCase() + name[i].substring(1).toLowerCase();
       }
       name = name.join(' ');
-      console.log(result.data.status);
       if (result.data.status === 'Succes')
         location.assign(`/guru/${name.split(' ').join('-')}`);
     } catch (err) {
-      console.log(err);
       if (err.response.data.message.includes('umur'))
         return showAlert(
           'error',
@@ -282,7 +255,6 @@ if (registerSiswaBtn) {
       'nomorPonselOrangtua',
       document.getElementById('nomorPonselOrangtua').value
     );
-    console.log(form);
     try {
       const result = await requestApi(form, 'post', 'siswa');
       const nama = document.getElementById('nama').value;
@@ -291,8 +263,6 @@ if (registerSiswaBtn) {
         name[i] = name[i][0].toUpperCase() + name[i].substring(1).toLowerCase();
       }
       name = name.join(' ');
-      console.log(result);
-
       if (result.data.status === 'Succes')
         location.assign(`/siswa/${name.split(' ').join('-')}`);
     } catch (err) {
@@ -379,22 +349,22 @@ if (sectionSearch) {
 
 const returnResult = async (query, value, endPoint) => {
   if (query === 'nama') {
-    const data = await axios.get(`http://localhost:3000/api/v1/${endPoint}`, {
+    const data = await axios.get(`/api/v1/${endPoint}`, {
       params: { nama: value },
     });
     return data;
   } else if (query === 'nik') {
-    const data = await axios.get(`http://localhost:3000/api/v1/${endPoint}`, {
+    const data = await axios.get(`/api/v1/${endPoint}`, {
       params: { nik: value },
     });
     return data;
   } else if (query === 'angkatan') {
-    const data = await axios.get(`http://localhost:3000/api/v1/${endPoint}`, {
+    const data = await axios.get(`/api/v1/${endPoint}`, {
       params: { angkatan: value },
     });
     return data;
   } else if (query === 'kelas') {
-    const data = await axios.get(`http://localhost:3000/api/v1/${endPoint}`, {
+    const data = await axios.get(`/api/v1/${endPoint}`, {
       params: { kelas: value },
     });
     return data;
@@ -466,7 +436,7 @@ if (searchBtn) {
           <div>
             <p>${e.nik}</p>
           </div>
-          <a href="http://localhost:3000/${endPoint[0].innerText.toLowerCase()}/${e.nama
+          <a href="/${endPoint[0].innerText.toLowerCase()}/${e.nama
             .split(' ')
             .join('-')}" class=""
             >Detail

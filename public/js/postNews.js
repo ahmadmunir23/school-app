@@ -16,12 +16,8 @@ if (postNewsBtn) {
     form.append('author', document.getElementById('author').value);
     form.append('type', document.getElementById('type').value);
     form.append('headline', document.getElementById('headline').value);
-    console.log(form);
     try {
-      const result = await axios.post(
-        'http://localhost:3000/post/create',
-        form
-      );
+      const result = await axios.post('/post/create', form);
 
       if (result.data.status === 'Succes') location.assign('/post');
     } catch (err) {
@@ -37,11 +33,9 @@ document.addEventListener('click', async function (e) {
     form.append('isi', document.getElementById('isi').value);
     form.append('type', document.getElementById('type').value);
     form.append('headline', document.getElementById('headline').value);
-    console.log(form);
-    console.log(document.getElementById('data').dataset.judul);
     try {
       const result = await axios.patch(
-        `http://localhost:3000/post/${document
+        `/post/${document
           .getElementById('data')
           .dataset.judul.split(' ')
           .join('-')}`,
@@ -57,12 +51,11 @@ document.addEventListener('click', async function (e) {
   } else if (e.target.id === 'delete-post') {
     try {
       const result = await axios.delete(
-        `http://localhost:3000/post/${document
+        `/post/${document
           .getElementById('data')
           .dataset.judul.split(' ')
           .join('-')}`
       );
-      console.log(result);
       if (result.data.status === 'Succes') location.assign('/post');
     } catch (err) {
       console.log(err.response);
@@ -177,9 +170,7 @@ document.addEventListener('click', async function (e) {
       const form = new FormData();
       form.append('email', document.getElementById('email').value);
       form.append('password', document.getElementById('password').value);
-      const result = await axios.post('http://localhost:3000/login', form);
-      console.log(form);
-      console.log(result);
+      const result = await axios.post('/login', form);
       if (result.data.status === 'Succes') this.location.assign('/');
     } catch (err) {
       const error = document.createElement('div');
@@ -202,39 +193,3 @@ document.addEventListener('click', async function (e) {
     }
   }
 });
-
-// document.addEventListener('click', function () {
-//   if (document.getElementById('edit-post-button')) {
-//     document
-//       .getElementById('edit-post-button')
-//       .addEventListener('click', async function (e) {
-//         const form = new FormData();
-//         form.append('judul', document.getElementById('judul').value);
-//         form.append('isi', document.getElementById('isi').value);
-//         form.append('type', document.getElementById('type').value);
-//         form.append('headline', document.getElementById('headline').value);
-//         console.log(form);
-//         console.log(document.getElementById('data').dataset.judul);
-//         try {
-//           const result = await axios.patch(
-//             `http://localhost:3000/post/${document
-//               .getElementById('data')
-//               .dataset.judul.split(' ')
-//               .join('-')}`,
-//             form
-//           );
-//           console.log(result);
-//         } catch (err) {
-//           console.log(err);
-//         }
-//       });
-//   }
-// });
-
-// document.addEventListener('click', function () {
-//   if (document.getElementById('batal-button')) {
-//     document
-//       .getElementById('batal-button')
-//       .addEventListener('click', function (e) {});
-//   }
-// });

@@ -55,11 +55,10 @@ module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
   if (process.env.NODE_ENV === 'development') {
-    console.log(err.message);
     return sendErrorDev(err, req, res);
   } else {
     let error = Object.assign(err);
-    console.log(err.message);
+
     if (error.code === 11000) {
       error = handleDuplicateFieldsDb(error);
       sendErrorProdJson(error, req, res);
@@ -86,5 +85,3 @@ module.exports = (err, req, res, next) => {
     }
   }
 };
-
-console.log(process.env.NODE_ENV);

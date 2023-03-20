@@ -1,3 +1,3 @@
-# SMKN 4 PALANGKARAYA APPLICATION
+# SEKOLAH APPLICATION
 
-Dibangun menggunakan: tailwind, vanilla JS, node.js, express, ejs, mognodb, mongoose
+Dibangun menggunakan: tailwind, vanilla JS, node.js, express, ejs, mongodb, mongoose

@@ -98,7 +98,6 @@ const siswaSchema = new mongoose.Schema({
 });
 
 siswaSchema.pre('save', async function (next) {
-  console.log(this);
   if (!this.isNew) return next();
   let name = this.nama.split(' ');
   for (i = 0; i < name.length; i++) {
@@ -110,50 +109,5 @@ siswaSchema.pre('save', async function (next) {
   next();
 });
 
-// siswaSchema.pre('findOneAndUpdate', async function (next) {
-//   console.log('asdasd');
-// });
-
 const Siswa = mongoose.model('Siswa', siswaSchema);
 module.exports = Siswa;
-
-// const data = [
-//   {
-//     nama: 'Ahmad Misbahul Munir',
-//     umur: 19,
-//     alamat: 'Jl. Putri Junjung Buih 6',
-//     nohp: 0812313121,
-//     ttl: 'July 2003 Palangkaraya',
-//     nik: '214212312',
-//     foto: 'https://unsplash.com/Ahmad-Misbahul-Munir',
-//     nilai: 'ObjectId1231231',
-//     nilai: [
-//       {
-//         waktu: 'X Semester 1',
-//         bahasaIndonesia: 80,
-//         matematika: 70,
-//         sejarah: 70,
-//         ipa: 70,
-//         ips: 70,
-//       },
-//       {
-//         waktu: 'X Semester 2',
-//         bahasaIndonesia: 80,
-//         matematika: 70,
-//         sejarah: 70,
-//         ipa: 70,
-//         ips: 70,
-//       },
-//       {
-//         waktu: 'XI Semester 1',
-//         bahasaIndonesia: 80,
-//         matematika: 70,
-//         sejarah: 70,
-//         ipa: 70,
-//         ips: 70,
-//       },
-//     ],
-//   },
-// ];
-
-// console.log(JSON.stringify(data));
