@@ -3,7 +3,7 @@ const app = require('./app');
 
 mongoose
   .connect(
-    'mongodb+srv://smkn4palangkaraya:smkn4palangkaraya@cluster0.me4aiad.mongodb.net/smkn4palangkaraya?retryWrites=true&w=majority',
+    `mongodb+srv://smkn4palangkaraya:${process.env.DATABASE_PASSWORD}@cluster0.me4aiad.mongodb.net/smkn4palangkaraya?retryWrites=true&w=majority`,
     { useNewUrlParser: true }
   )
   .then(() => console.log('connected to database'));
